@@ -1,0 +1,6 @@
+.vs/*
+*/bin/*
+*/obj/*
+HelloWorldApi/appsettings.Development.json
+HelloWorldApi/HelloWorldApi.http
+HelloWorldApi/Properties/launchSettings.json
