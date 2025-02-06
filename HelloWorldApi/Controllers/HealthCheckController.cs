@@ -14,11 +14,11 @@ namespace HelloWorldApi.Controllers
         }
 
         [HttpGet("status")]
-        public IActionResult GetStatus() 
+        public IActionResult GetStatus([FromQuery] string value) 
         {
-            _logger.LogCritical("> GetStatus critical Log with log");
-            _logger.LogError("> GetStatus error Log with log");
-            return Ok(new { status="Healthy with logs" } );
+            _logger.LogCritical($"> GetStatus critical Log with log: {value}");
+            _logger.LogError($"> GetStatus error Log with log: {value}");
+            return Ok(new { status=$"Healthy with logs: {value}" } );
         }
     }
 }

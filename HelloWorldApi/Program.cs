@@ -4,6 +4,9 @@ using Scalar.AspNetCore;
 using Serilog;
 using Serilog.AspNetCore;
 using Serilog.Sinks.ApplicationInsights;
+using System.IO;
+using System;
+using Microsoft.Extensions.DependencyInjection;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -16,11 +19,12 @@ builder.Services.AddControllers();
 // Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 builder.Services.AddOpenApi();
 
+var log = new LoggerConfiguration().CreateLogger();
+
 //add serilog
 builder.Host.UseSerilog((context, services, configuration) => {
-    
     configuration.WriteTo.ApplicationInsights(
-        TelemetryConfiguration.CreateDefault(), TelemetryConverter.Traces
+        services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces
         );
 });
 
