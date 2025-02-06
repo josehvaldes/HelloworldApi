@@ -16,8 +16,9 @@ namespace HelloWorldApi.Controllers
         [HttpGet("status")]
         public IActionResult GetStatus() 
         {
-            _logger.LogCritical(">GetStatus Log");
-            return Ok(new { status="Healthy" } );
+            _logger.LogCritical("> GetStatus critical Log with log");
+            _logger.LogError("> GetStatus error Log with log");
+            return Ok(new { status="Healthy with logs" } );
         }
     }
 }
