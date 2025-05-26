@@ -23,6 +23,7 @@ var log = new LoggerConfiguration().CreateLogger();
 
 //add serilog
 builder.Host.UseSerilog((context, services, configuration) => {
+    configuration.ReadFrom.Configuration(context.Configuration);
     configuration.WriteTo.ApplicationInsights(
         services.GetRequiredService<TelemetryConfiguration>(), TelemetryConverter.Traces
         );

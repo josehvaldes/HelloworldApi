@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using System.Runtime.CompilerServices;
 
+[assembly: InternalsVisibleTo("HelloWorldApi.UnitTests")]
 namespace HelloWorldApi.Controllers
 {
+    
     [Route("api/[controller]")]
     [ApiController]
     public class HealthCheckController : ControllerBase
