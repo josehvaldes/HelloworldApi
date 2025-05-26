@@ -4,3 +4,4 @@
 HelloWorldApi/appsettings.Development.json
 HelloWorldApi/HelloWorldApi.http
 HelloWorldApi/Properties/launchSettings.json
+HelloWorldApi/Logfiles/*
