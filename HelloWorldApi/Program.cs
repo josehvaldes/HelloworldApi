@@ -31,10 +31,6 @@ builder.Host.UseSerilog((context, services, configuration) => {
 
 var app = builder.Build();
 
-// Bind to Azure's expected host/port
-//Test fix for azure linux operating system
-var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
-app.Urls.Add($"http://0.0.0.0:{port}");
 
 
 // Configure the HTTP request pipeline.
@@ -50,5 +46,10 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.MapControllers();
+
+// Bind to Azure's expected host/port
+//Test fix for azure linux operating system
+var port = Environment.GetEnvironmentVariable("PORT") ?? "5000";
+app.Urls.Add($"http://0.0.0.0:{port}");
 
 app.Run();
