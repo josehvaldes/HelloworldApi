@@ -21,6 +21,7 @@ namespace HelloWorldApi.Controllers
         {
             _logger.LogCritical($"> GetStatus critical Log with log: {value}");
             _logger.LogError($"> GetStatus error Log with log: {value}");
+            System.Diagnostics.Trace.TraceError("Trace error using Diagnostics!");
             return Ok(new { status=$"Healthy with logs: {value}" } );
         }
     }
