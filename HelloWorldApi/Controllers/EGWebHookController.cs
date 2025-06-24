@@ -28,16 +28,26 @@ namespace HelloWorldApi.Controllers
 
             foreach (var eventGridEvent in eventGridEvents)
             {
-                if (eventGridEvent.EventType == "Microsoft.EventGrid.SubscriptionValidationEvent")
+                if (eventGridEvent.TryGetSystemEventData(out object eventD))
                 {
                     // Handle subscription validation
-                    var data = eventGridEvent.Data.ToObjectFromJson<SubscriptionValidationEventData>();
-                    var response = new
+                    if (eventD is SubscriptionValidationEventData subscriptionValidationEventData)
                     {
-                        validationResponse = data.ValidationCode
-                    };
-                    var json = Results.Json(response);
-                    return Ok(json);
+                        // Do any additional validation (as required) and then return back the below response
+                        var responseData = new
+                        {
+                            ValidationResponse = subscriptionValidationEventData.ValidationCode
+                        };
+
+                        return new OkObjectResult(responseData);
+                    }
+                    else 
+                    {
+                        // Handle other events
+                        Console.WriteLine($".Received event: {eventGridEvent.EventType}");
+                        Console.WriteLine($".Subject: {eventGridEvent.Subject}");
+                        Console.WriteLine($".Data: {eventGridEvent.Data}");
+                    }
                 }
                 else
                 {
