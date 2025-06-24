@@ -9,10 +9,10 @@ namespace HelloWorldApi.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class EventgridEndpoint : ControllerBase
+    public class EGWebHookController : ControllerBase
     {
-        private readonly ILogger<EventgridEndpoint> _logger;
-        public EventgridEndpoint(ILogger<EventgridEndpoint> logger)
+        private readonly ILogger<EGWebHookController> _logger;
+        public EGWebHookController(ILogger<EGWebHookController> logger)
         {
             _logger = logger;
         }
